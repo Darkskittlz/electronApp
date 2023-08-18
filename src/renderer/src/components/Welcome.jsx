@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { Dialog } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Space from './Space'
 import ToDoList from './ToDoList'
 import Contacts from './Contacts'
@@ -8,6 +7,7 @@ import Meetings from './Meetings'
 import City from './City'
 import Weather from './Weather'
 import Date from './Date-Time'
+import Nav from './Nav'
 
 export default function WelcomePage() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -15,6 +15,7 @@ export default function WelcomePage() {
     return (
         <>
             <Space />
+            <Nav />
             <div className="ml-40 mr-4 max-w-screen-xxl mx-auto max-h-screen relative">
                 <div className="z-50 flex justify-between items-center">
                     <City />

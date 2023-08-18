@@ -19,12 +19,12 @@ const DarkModeButton = () => {
     return (
         <>
             <button
-                className={`px-4 py-2 rounded ${isDarkMode ? 'bg-gray-dark text-white' : 'bg-gray-light text-gray-dark'
-            }`}
-            onClick={toggleDarkMode}
+                className={`px-4 rounded ${isDarkMode ? 'bg-gray-dark text-white' : 'bg-gray-light text-gray-dark'
+                    }`}
+                onClick={toggleDarkMode}
             >
-                {isDarkMode 
-                    ? <img alt="Sun" className="h-6 w-6" src={`${Moon}`} /> 
+                {isDarkMode
+                    ? <img alt="Sun" className="h-6 w-6" src={`${Moon}`} />
                     : <img alt="Sun" className="h-6 w-6" src={`${Sun}`} />
                 }
             </button>

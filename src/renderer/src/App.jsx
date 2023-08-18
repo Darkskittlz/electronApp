@@ -1,13 +1,31 @@
 import React from 'react';
 import WelcomePage from './components/Welcome'
-import Nav from './components/Nav';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
+
+import Layout from './components/Layout';
+import SignUp from './pages/SignUp';
+import SignIn from './pages/SignIn';
+import Dashboard from './pages/Dashboard';
+import Profile from './pages/Profile';
 
 function App() {
   return (
-    <div className="max-h-screen">
-      <Nav />
-      <WelcomePage />
-    </div>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="sign-up" element={<SignUp />} />
+          <Route path="sign-in" element={<SignIn />} />
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Dashboard />} />
+            <Route index element={<WelcomePage />} />
+            <Route path="profile" element={<Profile />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+
+      <Toaster />
+    </>
   )
 }
 
