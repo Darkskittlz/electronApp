@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { useOutletContext } from 'react-router-dom';
 import Input from '../components/Input';
+import Space from '../components/Space';
 
 const Profile = () => {
   const { user } = useOutletContext();
@@ -21,6 +22,7 @@ const Profile = () => {
 
   return (
     <>
+      <Space />
       <Helmet>
         <title>Profile - Nhost</title>
       </Helmet>
@@ -31,7 +33,7 @@ const Profile = () => {
           <p>Update your personal information.</p>
         </div>
 
-        <div className={styles.card}>
+        <div className="bg-white dark:bg-blur z-50 border rounded-lg">
           <form onSubmit={updateUserProfile} className={styles.form}>
             <div className={styles['form-fields']}>
               <div className={styles['input-group']}>
@@ -50,7 +52,7 @@ const Profile = () => {
                   required
                 />
               </div>
-              <div className={styles['input-email-wrapper']}>
+              <div className="bg-white dark:bg-blur z-50 roudned-lg">
                 <Input
                   type="email"
                   label="Email address"

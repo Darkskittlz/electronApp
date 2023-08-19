@@ -17,13 +17,13 @@ export default function WelcomePage() {
             <Space />
             <Nav />
             <div className="ml-40 mr-4 max-w-screen-xxl mx-auto max-h-screen relative">
-                <div className="z-50 flex justify-between items-center">
+                <div className="flex justify-between items-center">
                     <City />
                     <Weather />
                     <Date />
                 </div>
                 <div className="flex mt-5 justify-center">
-                    <div className="z-50 mr-8 h-20 w-60 rounded-lg bg-white flex items-center justify-center dark:bg-blur dark:border">
+                    <div className="mr-8 h-20 w-60 rounded-lg bg-white flex items-center justify-center dark:bg-blur dark:border">
                         <h1 className="text-black dark:text-white text-center">Welcome <br />Tristan Summers</h1>
                     </div>
                 </div>
