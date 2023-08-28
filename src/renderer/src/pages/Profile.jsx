@@ -8,7 +8,6 @@ import Space from '../components/Space';
 
 const Profile = () => {
   const { user } = useOutletContext();
-
   const [firstName, setFirstName] = useState(user?.metadata?.firstName ?? '');
   const [lastName, setLastName] = useState(user?.metadata?.lastName ?? '');
 
@@ -23,55 +22,57 @@ const Profile = () => {
   return (
     <>
       <Space />
-      <Helmet>
-        <title>Profile - Nhost</title>
-      </Helmet>
 
-      <div className={styles.container}>
-        <div className={styles.info}>
-          <h2>Profile</h2>
-          <p>Update your personal information.</p>
-        </div>
+      <div className={styles.gridContainer}>
+        <Helmet>
+          <title>Profile - Nhost</title>
+        </Helmet>
 
-        <div className="bg-white dark:bg-blur z-50 border rounded-lg">
-          <form onSubmit={updateUserProfile} className={styles.form}>
-            <div className={styles['form-fields']}>
-              <div className={styles['input-group']}>
-                <Input
-                  type="text"
-                  label="First name"
-                  value={firstName}
-                  onChange={e => setFirstName(e.target.value)}
-                  required
-                />
-                <Input
-                  type="text"
-                  label="Last name"
-                  value={lastName}
-                  onChange={e => setLastName(e.target.value)}
-                  required
-                />
+        <div className={styles.container}>
+          <div className={styles.info}>
+            <h2>Profile</h2>
+            <p>Update your personal information.</p>
+          </div>
+
+          <div className="bg-white z-10 dark:bg-blur border rounded-lg">
+            <form onSubmit={updateUserProfile} className={styles.form}>
+              <div className={styles['form-fields']}>
+                <div className={styles['input-group']}>
+                  <Input
+                    type="text"
+                    label="First name"
+                    value={firstName}
+                    onChange={e => setFirstName(e.target.value)}
+                    required
+                  />
+                  <Input
+                    type="text"
+                    label="Last name"
+                    value={lastName}
+                    onChange={e => setLastName(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className="bg-white dark:bg-blur roudned-lg">
+                  <Input
+                    type="email"
+                    label="Email address"
+                    value={user?.email}
+                    readOnly
+                  />
+                </div>
               </div>
-              <div className="bg-white dark:bg-blur z-50 roudned-lg">
-                <Input
-                  type="email"
-                  label="Email address"
-                  value={user?.email}
-                  readOnly
-                />
+              <div className={styles['form-footer']}>
+                <button
+                  type="submit"
+                  disabled={!isProfileFormDirty}
+                  className={styles.button}
+                >
+                  Update
+                </button>
               </div>
-            </div>
-
-            <div className={styles['form-footer']}>
-              <button
-                type="submit"
-                disabled={!isProfileFormDirty}
-                className={styles.button}
-              >
-                Update
-              </button>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
     </>

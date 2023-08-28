@@ -43,9 +43,9 @@ const Layout = () => {
     <div>
       <header className={styles.header}>
         <div className={styles['header-container']}>
-          {/* <Link to="/">
+          <Link to="/">
             <img src={process.env.PUBLIC_URL + 'logo.svg'} alt="logo" />
-          </Link> */}
+          </Link>
           <DarkModeButton onClick={toggleDarkMode} isDarkMode={isDarkMode} />
           <Menu as="div" className={styles.menu}>
             <Menu.Button className={styles['menu-button']}>

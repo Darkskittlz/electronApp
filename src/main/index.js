@@ -2,6 +2,12 @@ import { app, shell, BrowserWindow } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
+const path = require('path');
+const dotenv = require('dotenv');
+require('dotenv').config(); // Load variables from .env file
+dotenv.config(); // Load environment variables from .env file
+
+
 
 function createWindow() {
   // Create the browser window.
@@ -13,7 +19,9 @@ function createWindow() {
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
-      sandbox: false
+      sandbox: false,
+      nodeIntegration: true, // This allows you to use Node.js APIs in the renderer process.
+      contextIsolation: false // Disable context isolation for React
     }
   })
 
