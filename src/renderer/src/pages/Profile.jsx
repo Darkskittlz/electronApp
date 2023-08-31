@@ -1,23 +1,42 @@
 import styles from '../styles/pages/Profile.module.css';
-
+import { toast } from 'react-hot-toast'
 import { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { useOutletContext } from 'react-router-dom';
 import Input from '../components/Input';
 import Space from '../components/Space';
+import { UPDATE_USER_MUTATION } from '../components/GraphQL/Queries';
 
 const Profile = () => {
   const { user } = useOutletContext();
   const [firstName, setFirstName] = useState(user?.metadata?.firstName ?? '');
   const [lastName, setLastName] = useState(user?.metadata?.lastName ?? '');
+  const [mutateUser, { loading: updatingProfile }] = useMutation(UPDATE_USER_MUTATION)
+
 
   const isFirstNameDirty = firstName !== user?.metadata?.firstName;
   const isLastNameDirty = lastName !== user?.metadata?.lastName;
   const isProfileFormDirty = isFirstNameDirty || isLastNameDirty;
 
-  const updateUserProfile = async e => {
-    e.preventDefault();
-  };
+  const updateUserProfile = async (e) => {
+    e.preventDefault()
+
+    try {
+      await mutateUser({
+        variables: {
+          id: user.id,
+          displayName: `${firstName} ${lastName}`.trim(),
+          metadata: {
+            firstName,
+            lastName
+          }
+        }
+      })
+      toast.success('Updated successfully', { id: 'updateProfile' })
+    } catch (error) {
+      toast.error('Unable to update profile', { id: 'updateProfile' })
+    }
+  }
 
   return (
     <>

@@ -11,11 +11,23 @@ import {
 } from '@heroicons/react/outline';
 import Avatar from './Avatar';
 import DarkModeButton from './DarkMode';
+import { useSignOut } from '@nhost/react'
+import { useUserId } from '@nhost/react'
+import { GET_USER_QUERY } from './GraphQL/Queries';
+import Logo from "../assets/logo.png"
+
 
 const Layout = () => {
-  const user = null;
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const { signOut } = useSignOut()
+  const id = useUserId()
 
+  const { loading, error, data } = useQuery(GET_USER_QUERY, {
+    variables: { id },
+    skip: !id
+  })
+  
+  const user = data?.user
 
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
@@ -34,9 +46,9 @@ const Layout = () => {
     },
     {
       label: 'Logout',
-      onClick: () => null,
-      icon: LogoutIcon,
-    },
+      onClick: signOut,
+      icon: LogoutIcon
+    }
   ];
 
   return (
@@ -44,7 +56,7 @@ const Layout = () => {
       <header className={styles.header}>
         <div className={styles['header-container']}>
           <Link to="/">
-            <img src={process.env.PUBLIC_URL + 'logo.svg'} alt="logo" />
+            <img src={Logo} alt="logo" />
           </Link>
           <DarkModeButton onClick={toggleDarkMode} isDarkMode={isDarkMode} />
           <Menu as="div" className={styles.menu}>
@@ -97,7 +109,11 @@ const Layout = () => {
 
       <main className={styles.main}>
         <div className={styles['main-container']}>
-          <Outlet context={{ user }} />
+          {error ? (
+            <p>Something went wrong. Try to refresh the page.</p>
+          ) : !loading ? (
+            <Outlet context={{ user }} />
+          ) : null}
         </div>
       </main>
     </div>
