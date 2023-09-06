@@ -1,5 +1,7 @@
 *.log*
 
+.secrets
+
 # dependencies
 /node_modules
 /.pnp
