@@ -29,7 +29,7 @@
     "@mui/material": "^5.14.5",
     "@nhost/react": "^2.0.28",
     "@nhost/react-apollo": "^5.0.32",
-    "@nhost/vue": "^0.4.6",
+    "@nhost/vue": "^1.14.1",
     "autoprefixer": "^10.4.15",
     "classnames": "^2.3.2",
     "electron-updater": "^5.3.0",
